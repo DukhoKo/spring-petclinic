@@ -1,4 +1,4 @@
-# 스프링 프레임워크 입문
+# 스프링 프레임워크
 
 ## IoC (Inversion of Control)
 컨트롤의 뒤바뀜.. 무엇에 대해 뒤바뀐거냐? 일반적으로 의존성에 대해서..
@@ -52,6 +52,26 @@ OwnerController가 IoC 컨테이너 내부의 객체로 들어오고 IoC 컨테�
 어떻게 꺼내쓰나?
 * @Autowired 또는 @Inject
 * 또는 ApplicationContext에서 getBean()으로 직접 꺼내쓴다.
+
+## 의존성 주입 (Dependency Injection)
+필요한 의존성을 어떻게 받아올것인가..
+@Autowired / @Inject 를 어떻게 받아 올것인가?
+* 생성자
+* 필드
+* Setter
+어디에 붙여야하는가?
+=> 생성자를 쓸수있다면 or 해당 클래스에 반드시 필요한 객체다 라고 생각하면 첫번째로 생성자, 
+   필드와 Setter중에 클래스가 Setter를 가지고 있다면 Setter, 그게 아니라면 필드에 붙이는게 좋다.
+
+## AOP (Aspect Oriented Programming)
+*핵심! 흩어져 있는 코드를 한곳으로 모으는게 AOP이다.*
+이렇게 구현하는 기법 
+1. byte 코드를 조작한다. (compile하면 나오는 doc.class 파일을 조작하는것이다.)
+2. proxy pattern을 조작한다.
+
+@Around 말고 추가적으로 찾아보면 더 있다. 
+
+## PSA (Portable Service Abstraction)
 
 
 
