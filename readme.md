@@ -6,7 +6,7 @@
 원래는 내가 쓸놈은 내가 만들어서 쓸게..
 ```c
 class OwnerController {
-private OwnerRepository repository = new OwnerRepository();
+    private OwnerRepository repository = new OwnerRepository();
 }
 ```
 이렇게 OwnerRepository는 OwnerController의 의존성이다. OwnerController는 OwnerRepository를 필요로 한다.
@@ -72,11 +72,19 @@ OwnerController가 IoC 컨테이너 내부의 객체로 들어오고 IoC 컨테�
 @Around 말고 추가적으로 찾아보면 더 있다. 
 
 ## PSA (Portable Service Abstraction)
+환경의 변화와 관계없이 일관된 방식의 기술로의 접근 환경을 제공하려는 추상화 구조
 
+## Transactional
+Platform TransactionManager중에 
+JpaTransacionManager | DatasourceTransactionManager | HibernateTransactionManager를 사용한다.
 
+## Cache
+@EnableCaching - spring framework : cache관련 기능 활성화  @Cacheable | @CacheEvict | .. 사용가능
+CacheManager중에
+JCacheManager | ConcurrentMapCacheManager | EhCacheCacheManager | .. 사용가능
 
-
-
+## 웹 MVC
+@Controller | @RequestMapping
 
 
 
