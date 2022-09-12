@@ -32,6 +32,8 @@ class OwnerControllerTest {
 
 ## IoC (Inversion of Control) 컨테이너
 Spring Framework은 Inversion of Control용 컨테이너를 제공해준다.
+IoC : 의존 관계 주입(Dependency Injection)이라고도 하며, 어떤 객체가 사용하는 의존 객체를 직접 만들어 사용하는게 아니라 주입받아 사용하는 방법을 말한다.
+
 그럼 **컨테이너의 핵심 인터페이스**는 **ApplicationContext ( beanFactory )** 이다.
 **컨테이너 내부에 만들어진 객체**를 **bean**이라고 한다. **이런한 bean들의 의존성을 관리해주는 역할을 하는게 컨테이너이다.** 오로지 bean만 관리한다.
 
@@ -53,6 +55,11 @@ OwnerController가 IoC 컨테이너 내부의 객체로 들어오고 IoC 컨테�
 * @Autowired 또는 @Inject
 * 또는 ApplicationContext에서 getBean()으로 직접 꺼내쓴다.
 
+- 장점
+  * 스코프
+      * 싱글톤 : 하나 (빈으로 등록시 어떠한 annotation도 안붙였다면 그 빈들은 싱글톤)
+      * 프로토타입 : 매번 다른 객체를 사용하는것
+  * 라이프사이클 인터페이스
 ## 의존성 주입 (Dependency Injection)
 필요한 의존성을 어떻게 받아올것인가..
 @Autowired / @Inject 를 어떻게 받아 올것인가?
