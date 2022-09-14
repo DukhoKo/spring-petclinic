@@ -1,6 +1,8 @@
 # 스프링 프레임워크
 
 ## IoC (Inversion of Control)
+- 의존 관계 주입(Dependency Injection)이라고도 하며, 어떤 객체가 사용하는 의존 객체를 직접 만들어 사용하는게 아니라, 주입 받아 사용하는 방법을 말함
+
 컨트롤의 뒤바뀜.. 무엇에 대해 뒤바뀐거냐? 일반적으로 의존성에 대해서..
 
 원래는 내가 쓸놈은 내가 만들어서 쓸게..
@@ -32,14 +34,23 @@ class OwnerControllerTest {
 
 ## IoC (Inversion of Control) 컨테이너
 Spring Framework은 Inversion of Control용 컨테이너를 제공해준다.
-IoC : 의존 관계 주입(Dependency Injection)이라고도 하며, 어떤 객체가 사용하는 의존 객체를 직접 만들어 사용하는게 아니라 주입받아 사용하는 방법을 말한다.
+Spring IoC 컨테이너
+ * [BeanFactory](https://docs.spring.io/spring-framework/docs/5.0.8.RELEASE/javadoc-api/org/springframework/beans/factory/BeanFactory.html)
+ * 애플리케이션 컴포넌트의 중앙 저장소
+ * 빈 인스턴스 생성
+ * 빈 설정 소스로 부터 빈 정의를 읽어들이고, 빈을 구성하고 제공한다.
 
 그럼 **컨테이너의 핵심 인터페이스**는 **ApplicationContext ( beanFactory )** 이다.
 **컨테이너 내부에 만들어진 객체**를 **bean**이라고 한다. **이런한 bean들의 의존성을 관리해주는 역할을 하는게 컨테이너이다.** 오로지 bean만 관리한다.
 
 어떤 코드를 봐도 ApplicationContext가 존재하지 않는다.
-
 OwnerController가 IoC 컨테이너 내부의 객체로 들어오고 IoC 컨테이너 내부애서 OwnerController 객체를 만들어준다.
+
+[ApplicationContext](https://docs.spring.io/spring-framework/docs/5.0.8.RELEASE/javadoc-api/org/springframework/context/ApplicationContext.html)
+ * [BeanFactory](https://docs.spring.io/spring-framework/docs/5.0.8.RELEASE/javadoc-api/org/springframework/beans/factory/BeanFactory.html)
+ * 메시지 소스처리 기능 (i18n)
+ * 이벤트 발행 기능
+ * 리소스 로딩 기능
 
 ## Bean(빈)
 **스프링 IoC 컨테이너가 관리하는 객체**
@@ -55,11 +66,36 @@ OwnerController가 IoC 컨테이너 내부의 객체로 들어오고 IoC 컨테�
 * @Autowired 또는 @Inject
 * 또는 ApplicationContext에서 getBean()으로 직접 꺼내쓴다.
 
-- 장점
+- 빈 장점
   * 스코프
       * 싱글톤 : 하나 (빈으로 등록시 어떠한 annotation도 안붙였다면 그 빈들은 싱글톤)
       * 프로토타입 : 매번 다른 객체를 사용하는것
   * 라이프사이클 인터페이스
+    cf) @PostConstruct ...
+  
+## @Autowired
+* required : 기본값은 true (못찾으면 애플리케이션 구동 실패) cf) @Autowired(requried = false) false를 쓰려면 이렇게 쓰면 된다.
+* 사용할수 있는 위치
+  * 생성자 (스프링 4.3부터는 생략 가능)
+  * Setter
+  * 필드
+
+같은 타입의 빈이 여러개일 경우
+* @Primary
+* 해당 타입의 빈 모두 주입 받기
+* @Qualifier("빈 이름으로 주입")
+
+## @Component 와 @ComponentScan
+* @ComponentScan의 주요 기능
+  * 스캔 위치 기능
+  * 필터 : 어떤 애노테이션을 스캔할지 또는 하지 않을지
+
+* @Component
+  * @Repository
+  * @Service
+  * @Controller
+  * @Configuration
+
 ## 의존성 주입 (Dependency Injection)
 필요한 의존성을 어떻게 받아올것인가..
 @Autowired / @Inject 를 어떻게 받아 올것인가?
